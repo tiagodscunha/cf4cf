@@ -1,6 +1,6 @@
-# cf4cf
+# CF4CF and CF4CF-META: Collaborative Filtering algorithm selection frameworks
 
-Source code for CF4CF and CF4CF-META. It contains all experimental procedures used to empirically compare multiple Collaborative Filtering algorithm selection studies. The code can be used to replicate the experiments of the contributions presented in the following research papers:
+Source code for all experimental procedures used to empirically compare multiple these Collaborative Filtering algorithm selection frameworks. The code can be used to replicate the experiments of the contributions presented in the following research papers:
 
 - Cunha, T., Soares, C., & de Carvalho, A. C. P. L. F. (2018). A Label Ranking approach for selecting rankings of Collaborative Filtering algorithms. In ACM Symposium on Applied Computing (pp. 1393–1395).
 - Cunha, T., Soares, C., & de Carvalho, A. C. P. L. F. (2018). CF4CF: Recommending Collaborative Filtering Algorithms Using Collaborative Filtering. In Proceedings of the 12th ACM Conference on Recommender Systems (pp. 357–361). 
