@@ -93,8 +93,8 @@ createSimpleGraphic(new_tmp)
 ####################################   KENDALL'S TAU CD DIAGRAM  ###########################################
 ############################################################################################################
 
-library(scmamp)
-plotCD (rbind(tmp_ir,tmp_rp), alpha=0.05, cex=1.25)
+# library(scmamp)
+# plotCD (rbind(tmp_ir,tmp_rp), alpha=0.05, cex=1.25)
 
 
 ############################################################################################################
@@ -520,7 +520,7 @@ A[which(A$metafeatures == "MostPopular"),]$metafeatures <- "MP"
 
 g1 <- ggplot(A,aes(x=metafeatures,y=rank)) + geom_bar(stat = "identity",  position = "identity", width=0.5) + 
   theme(axis.title.x = element_blank(),axis.title.y = element_blank(), axis.text.x = element_text(angle = 45, hjust = 1),plot.title = element_text(hjust = 0.5)) +
-  ggtitle("IR")
+  ggtitle("IR") + coord_flip()
 g1
 
 B <- RP[which(RP$rank < 17),]
@@ -535,7 +535,7 @@ B[which(B$metafeatures == "colSums_skewness"),]$metafeatures <- "I.sum.skew"
 
 g2 <- ggplot(B,aes(x=metafeatures,y=rank)) + geom_bar(stat = "identity",  position = "identity", width=0.5) + 
   theme(axis.title.x = element_blank(),axis.title.y = element_blank(), axis.text.x = element_text(angle = 45, hjust = 1),plot.title = element_text(hjust = 0.5)) +
-  ggtitle("RP")
+  ggtitle("RP") + coord_flip()
 g2
 
 

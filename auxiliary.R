@@ -734,7 +734,7 @@ LOOCV <- function(data=NULL, targets=NULL, rating_matrix=NULL, method=NULL, algo
 trainModelVarIMp <- function(data,rating_matrix,targets){
   
   new_rm <- as(as(rating_matrix,"realRatingMatrix"),"matrix")
-  new_data <- normalize(data)
+  new_data <- BBmisc::normalize(data)
   new_data <- cbind(new_data,new_rm)
   model <-  RFR2_justModels(new_data[,2:dim(new_data)[2]],targets)
   
