@@ -549,6 +549,8 @@
 # ############################################################################################################
 # 
 
+library(reshape2)
+
 
 getAllMetamodels <- function(framework,metafeature,type,metalearner){
   
@@ -739,8 +741,6 @@ ASLIB_RP <- rbind(
   getAllMetamodels("meta_aslib","gr","RP"),
   getAllMetamodels("meta_aslib","comp","RP"))
 
-rm(IR,RP)
-
 
 LR_IR$strategy <- "LR"
 LR_RP$strategy <- "LR"
@@ -748,24 +748,13 @@ CF4CF_IR$strategy <- "CF4CF"
 CF4CF_RP$strategy <- "CF4CF"
 CF4CF_META_IR$strategy <- "CF4CF_META"
 CF4CF_META_RP$strategy <- "CF4CF_META"
+ALORS_IR$strategy <- "ALORS"
+ALORS_RP$strategy <- "ALORS"
+ASLIB_IR$strategy <- "ASLIB"
+ASLIB_RP$strategy <- "ASLIB"
 
-tmp_ir <- data.frame(
-  AVG = AVG_IR,
-  LR = LR_IR,
-  CF4CF = CF4CF_IR,
-  CF4CF_META = CF4CF_META_IR,
-  ALORS = ALORS_IR,
-  ASLIB = ASLIB_IR
-)
-
-tmp_rp <- data.frame(
-  AVG = AVG_RP,
-  LR = LR_RP,
-  CF4CF = CF4CF_RP,
-  CF4CF_META = CF4CF_META_RP,
-  ALORS = ALORS_RP,
-  ASLIB = ASLIB_RP
-)
+tmp_ir <- rbind(LR_IR,CF4CF_IR,CF4CF_META_IR,ALORS_IR,ASLIB_IR)
+tmp_rp <- rbind(LR_RP,CF4CF_RP,CF4CF_META_RP,ALORS_RP,ASLIB_RP)
 
 tmp_ir$target <- "IR"
 tmp_rp$target <- "RP"
@@ -799,19 +788,17 @@ all$dataset <- unlist(lapply(all$dataset,function(x){
 }))
 
 
-library(reshape2)
-all <- melt(all,id.vars = c("target","dataset"))
-all$value <- as.numeric(all$value)
 
 
 library(ggplot2)
 
-p <- ggplot(all, aes(x=dataset,y=value,fill=variable)) + 
+p <- ggplot(all, aes(x=dataset,y=value,fill=strategy)) + 
   geom_violin() +
   coord_flip() + 
-  facet_wrap( ~ variable, scales="free", ncol=2) + 
+  facet_wrap( ~ strategy, scales="free", ncol=2) + 
   theme(text = element_text(size=8)) + 
-  guides(fill=guide_legend(title="Metafeatures"))
+  theme (axis.title.x=element_blank(),axis.title.y=element_blank()) +
+  guides(fill=guide_legend(title="Metalearners"))
 
 p
 
